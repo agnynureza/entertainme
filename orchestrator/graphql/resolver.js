@@ -1,11 +1,13 @@
+console.log('masuk resolver')
+
 const axios = require('axios')
 const resolvers = {
   Query: {
     movies: async () => {
       try{
-        const movies = await axios.get('http//localhost:3001/movie')
+        const movies = await axios.get('http://localhost:3001/movie')
         if(movies){
-          return movies.data
+          return movies.data.data
         }
       }catch(err){
         return err
@@ -13,9 +15,9 @@ const resolvers = {
     },
     tv: async () => {
       try{
-        const Tv = await axios.get('http//localhost:3002/tv')
+        const Tv = await axios.get('http://localhost:3002/tv')
         if(Tv){
-          return Tv.data
+          return Tv.data.data
         }
       }catch(err){
         return err
@@ -23,8 +25,9 @@ const resolvers = {
     }
   },
   Mutation: {
-    addMovies: async (ksoong,data) => {
-      const add = await axios.post('http://localhost:3001/movie',data)
+    addMovies: async (root,{newMovie}) => {
+      const add = await axios.post('http://localhost:3001/movie',newMovie)
+      console.log(add)
       if(add){
         return add.data.data
       }

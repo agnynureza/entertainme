@@ -17,6 +17,7 @@ class Content extends Component {
             }
           }`}> 
           {({loading,error,data})=> {
+            console.log(data)
             if(loading) return <p> loading.... </p>
             if(error) return <p> Error... </p>
             return data.movies.map(({_id,title,overview,popularity})=>(

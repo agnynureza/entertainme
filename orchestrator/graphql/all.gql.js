@@ -1,3 +1,4 @@
+console.log('masuk graph')
 const orchestrator = `
 type Query{
   movies: [Movie],
@@ -5,17 +6,20 @@ type Query{
 }
 
 type Mutation{
-  addMovies(
-    title: String,
-    popularity: Int,
-    overview: String,
-    poster_path: String): Movie
+  addMovies(newMovie: movieInput): Movie
+}
+
+input movieInput {
+  title: String,
+  popularity: String,
+  overview: String,
+  poster_path: String
 }
 
 type Movie{
   _id: String,
   title: String,
-  popularity: Int,
+  popularity: String,
   overview: String,
   poster_path: String
 }
@@ -24,7 +28,7 @@ type tv {
   title: String,
   overview: String,
   poster_path: String,
-  popularity: Int,
+  popularity: String,
 }
 `
 
