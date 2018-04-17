@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var app = express();
 const cors = require('cors')
 const mongoose = require('mongoose')
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { makeExecutableSchema } = require('graphql-tools');
+const fs = require ('fs')
 
 mongoose.connect('mongodb://agnynureza:12345@ds133856.mlab.com:33856/microservice', err => {
   if(!err) console.log('Movies connected to database !')
@@ -17,8 +20,6 @@ const tag = require('./routes/tag')
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 
 app.use('/', index);
 app.use('/tag', tag)
